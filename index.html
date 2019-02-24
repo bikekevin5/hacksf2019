@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Hackathon 2019">
+  <meta name="author" content="Kevin Lim">
+  <meta name="email" content="bikekevin5@gmail.com">
+
+
+  <title>JAM SESH - BattleDJ with Friends</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="css/carousel.css" rel="stylesheet">
+
+
+  <style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+   .map-responsive{
+     overflow:hidden;
+     padding-bottom:100%;
+     position:relative;
+     height:0;
+   }
+
+   .map-responsive iframe{
+     left:0;
+     top:0;
+     height:100%;
+     width:100%;
+     position:absolute;
+   }
+
+   .svg-bg1{
+     background-color: #000000;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23220000' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%23440000' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23660000' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23880000' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23A00' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+     background-size: cover;
+   }
+
+   .svg-bg3{
+     background-color: #913535;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='%23ffa400' fill-opacity='0.08'%3E%3Cpath d='M12 0h18v6h6v6h6v18h-6v6h-6v6H12v-6H6v-6H0V12h6V6h6V0zm12 6h-6v6h-6v6H6v6h6v6h6v6h6v-6h6v-6h6v-6h-6v-6h-6V6zm-6 12h6v6h-6v-6zm24 24h6v6h-6v-6z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");}
+
+    .svg-bg-sunset{
+      background-color: #ff9d00;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23000' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23ff9d00' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23fd8a1e' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23f8792e' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23f16839' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23e75843' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23da4a4b' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23cc3e52' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23bb3557' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23a92e5a' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%2396295b' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%2382255a' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%236e2358' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23592053' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23461e4d' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23331a44' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%2321163b' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23111030' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23020524' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      }
+
+    .svg-bg-greenset{
+      background-color: #ff4511;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23504b3c' stroke-width='62.5' stroke-opacity='0.13' %3E%3Ccircle fill='%23ff4511' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23ea5a00' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23d46900' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23be7400' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23a77c00' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23918100' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%237b8500' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23668700' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23518815' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%233a882e' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%231e8840' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23008651' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%2300845f' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%2300826c' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23007f76' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%23007b7d' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23007781' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23097383' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .svg-bg-scales{
+       background-color: #ffffff;
+       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='100' viewBox='0 0 600 100'%3E%3Cg stroke='%23FFF' stroke-width='0' stroke-miterlimit='10' %3E%3Ccircle fill='%23037B79' cx='0' cy='0' r='50'/%3E%3Ccircle fill='%2392DEBA' cx='100' cy='0' r='50'/%3E%3Ccircle fill='%23FFFFD8' cx='200' cy='0' r='50'/%3E%3Ccircle fill='%23CAF2FF' cx='300' cy='0' r='50'/%3E%3Ccircle fill='%236FCCFF' cx='400' cy='0' r='50'/%3E%3Ccircle fill='%23006EB4' cx='500' cy='0' r='50'/%3E%3Ccircle fill='%23037B79' cx='600' cy='0' r='50'/%3E%3Ccircle cx='-50' cy='50' r='50'/%3E%3Ccircle fill='%2353ac9a' cx='50' cy='50' r='50'/%3E%3Ccircle fill='%23ceefc1' cx='150' cy='50' r='50'/%3E%3Ccircle fill='%23ffffff' cx='250' cy='50' r='50'/%3E%3Ccircle fill='%239de0fe' cx='350' cy='50' r='50'/%3E%3Ccircle fill='%233e9cda' cx='450' cy='50' r='50'/%3E%3Ccircle fill='%2300789c' cx='550' cy='50' r='50'/%3E%3Ccircle cx='650' cy='50' r='50'/%3E%3Ccircle fill='%23037B79' cx='0' cy='100' r='50'/%3E%3Ccircle fill='%2392DEBA' cx='100' cy='100' r='50'/%3E%3Ccircle fill='%23FFFFD8' cx='200' cy='100' r='50'/%3E%3Ccircle fill='%23CAF2FF' cx='300' cy='100' r='50'/%3E%3Ccircle fill='%236FCCFF' cx='400' cy='100' r='50'/%3E%3Ccircle fill='%23006EB4' cx='500' cy='100' r='50'/%3E%3Ccircle fill='%23037B79' cx='600' cy='100' r='50'/%3E%3Ccircle cx='50' cy='150' r='50'/%3E%3Ccircle cx='150' cy='150' r='50'/%3E%3Ccircle cx='250' cy='150' r='50'/%3E%3Ccircle cx='350' cy='150' r='50'/%3E%3Ccircle cx='450' cy='150' r='50'/%3E%3Ccircle cx='550' cy='150' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .svg-bg-fan{
+       background-color: #e9eec9;
+       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 28' width='56' height='28'%3E%3Cpath fill='%23b4bcce' fill-opacity='0.46' d='M56 26v2h-7.75c2.3-1.27 4.94-2 7.75-2zm-26 2a2 2 0 1 0-4 0h-4.09A25.98 25.98 0 0 0 0 16v-2c.67 0 1.34.02 2 .07V14a2 2 0 0 0-2-2v-2a4 4 0 0 1 3.98 3.6 28.09 28.09 0 0 1 2.8-3.86A8 8 0 0 0 0 6V4a9.99 9.99 0 0 1 8.17 4.23c.94-.95 1.96-1.83 3.03-2.63A13.98 13.98 0 0 0 0 0h7.75c2 1.1 3.73 2.63 5.1 4.45 1.12-.72 2.3-1.37 3.53-1.93A20.1 20.1 0 0 0 14.28 0h2.7c.45.56.88 1.14 1.29 1.74 1.3-.48 2.63-.87 4-1.15-.11-.2-.23-.4-.36-.59H26v.07a28.4 28.4 0 0 1 4 0V0h4.09l-.37.59c1.38.28 2.72.67 4.01 1.15.4-.6.84-1.18 1.3-1.74h2.69a20.1 20.1 0 0 0-2.1 2.52c1.23.56 2.41 1.2 3.54 1.93A16.08 16.08 0 0 1 48.25 0H56c-4.58 0-8.65 2.2-11.2 5.6 1.07.8 2.09 1.68 3.03 2.63A9.99 9.99 0 0 1 56 4v2a8 8 0 0 0-6.77 3.74c1.03 1.2 1.97 2.5 2.79 3.86A4 4 0 0 1 56 10v2a2 2 0 0 0-2 2.07 28.4 28.4 0 0 1 2-.07v2c-9.2 0-17.3 4.78-21.91 12H30zM7.75 28H0v-2c2.81 0 5.46.73 7.75 2zM56 20v2c-5.6 0-10.65 2.3-14.28 6h-2.7c4.04-4.89 10.15-8 16.98-8zm-39.03 8h-2.69C10.65 24.3 5.6 22 0 22v-2c6.83 0 12.94 3.11 16.97 8zm15.01-.4a28.09 28.09 0 0 1 2.8-3.86 8 8 0 0 0-13.55 0c1.03 1.2 1.97 2.5 2.79 3.86a4 4 0 0 1 7.96 0zm14.29-11.86c1.3-.48 2.63-.87 4-1.15a25.99 25.99 0 0 0-44.55 0c1.38.28 2.72.67 4.01 1.15a21.98 21.98 0 0 1 36.54 0zm-5.43 2.71c1.13-.72 2.3-1.37 3.54-1.93a19.98 19.98 0 0 0-32.76 0c1.23.56 2.41 1.2 3.54 1.93a15.98 15.98 0 0 1 25.68 0zm-4.67 3.78c.94-.95 1.96-1.83 3.03-2.63a13.98 13.98 0 0 0-22.4 0c1.07.8 2.09 1.68 3.03 2.63a9.99 9.99 0 0 1 16.34 0z'%3E%3C/path%3E%3C/svg%3E");
+    }
+
+    .svg-bg-mor{
+      background-color: #913535;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='88' viewBox='0 0 80 88' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 21.91V26h-2c-9.94 0-18 8.06-18 18 0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73 3.212-6.99 9.983-12.008 18-12.73V62h2c9.94 0 18-8.06 18-18 0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73-3.212 6.99-9.983 12.008-18 12.73zM54 58v4.696c-5.574 1.316-10.455 4.428-14 8.69-3.545-4.262-8.426-7.374-14-8.69V58h-5.993C12.27 58 6 51.734 6 44c0-7.732 6.275-14 14.007-14H26v-4.696c5.574-1.316 10.455-4.428 14-8.69 3.545 4.262 8.426 7.374 14 8.69V30h5.993C67.73 30 74 36.266 74 44c0 7.732-6.275 14-14.007 14H54zM42 88c0-9.94 8.06-18 18-18h2v-4.09c8.016-.722 14.787-5.738 18-12.73v7.434c-3.545 4.262-8.426 7.374-14 8.69V74h-5.993C52.275 74 46 80.268 46 88h-4zm-4 0c0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73v7.434c3.545 4.262 8.426 7.374 14 8.69V74h5.993C27.73 74 34 80.266 34 88h4zm4-88c0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73v-7.434c-3.545-4.262-8.426-7.374-14-8.69V14h-5.993C52.27 14 46 7.734 46 0h-4zM0 34.82c3.213-6.992 9.984-12.008 18-12.73V18h2c9.94 0 18-8.06 18-18h-4c0 7.732-6.275 14-14.007 14H14v4.696c-5.574 1.316-10.455 4.428-14 8.69v7.433z' fill='%23ffa400' fill-opacity='0.06' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .svg-bg-tile{
+      background-color: #913535;
+      background-image: url("data:image/svg+xml,%3Csvg width='84' height='84' viewBox='0 0 84 84' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffa400' fill-opacity='0.08'%3E%3Cpath d='M84 23c-4.417 0-8-3.584-8-7.998V8h-7.002C64.58 8 61 4.42 61 0H23c0 4.417-3.584 8-7.998 8H8v7.002C8 19.42 4.42 23 0 23v38c4.417 0 8 3.584 8 7.998V76h7.002C19.42 76 23 79.58 23 84h38c0-4.417 3.584-8 7.998-8H76v-7.002C76 64.58 79.58 61 84 61V23zM59.05 83H43V66.95c5.054-.5 9-4.764 9-9.948V52h5.002c5.18 0 9.446-3.947 9.95-9H83v16.05c-5.054.5-9 4.764-9 9.948V74h-5.002c-5.18 0-9.446 3.947-9.95 9zm-34.1 0H41V66.95c-5.053-.502-9-4.768-9-9.948V52h-5.002c-5.184 0-9.447-3.946-9.95-9H1v16.05c5.053.502 9 4.768 9 9.948V74h5.002c5.184 0 9.447 3.946 9.95 9zm0-82H41v16.05c-5.054.5-9 4.764-9 9.948V32h-5.002c-5.18 0-9.446 3.947-9.95 9H1V24.95c5.054-.5 9-4.764 9-9.948V10h5.002c5.18 0 9.446-3.947 9.95-9zm34.1 0H43v16.05c5.053.502 9 4.768 9 9.948V32h5.002c5.184 0 9.447 3.946 9.95 9H83V24.95c-5.053-.502-9-4.768-9-9.948V10h-5.002c-5.184 0-9.447-3.946-9.95-9zM50 50v7.002C50 61.42 46.42 65 42 65c-4.417 0-8-3.584-8-7.998V50h-7.002C22.58 50 19 46.42 19 42c0-4.417 3.584-8 7.998-8H34v-7.002C34 22.58 37.58 19 42 19c4.417 0 8 3.584 8 7.998V34h7.002C61.42 34 65 37.58 65 42c0 4.417-3.584 8-7.998 8H50z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+
+
+ </style>
+
+</head>
+
+<body id="page-top">
+
+  <!--Facebook -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><ion-icon name="microphone"></ion-icon>JAM SESH</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#location">How</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#production">Who</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#partners">Partners</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#913535" width="100%" height="100%"/></svg>-->
+        <img class="svg-bg1" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1><ion-icon name="microphone"></ion-icon>JAM SESH</h1>
+            <p>Battle your friends. Bassdrops for glory.</p>
+            <p><a class="btn btn-lg btn-secondary js-scroll-trigger" href="#about" role="button">Sign up</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="svg-bg-sunset" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>Plug in any DAW and go</h1>
+            <p>Our partners at Serrato helps us do the rest.<p>
+            <p><a class="btn btn-lg btn-primary js-scroll-trigger" href="#about" role="button">Read More</a></p>
+            <!-- Read the Press Release, When available -->
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#bbbbbb" width="100%" height="100%"/></svg>-->
+        <!--<img class="svg-bg3" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>-->
+        <img class="svg-bg3" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>On the App Store</h1>
+            <p>For Android and iOS, or right here in the mobile web browser<p>
+            <p><a class="btn btn-lg btn-secondary js-scroll-trigger" href="#about" role="button">Download Now</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#e9eec9" width="100%" height="100%"/></svg>-->
+        <img class="svg-bg-fan" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>
+        <div class="container">
+          <div class="carousel-caption text-right text-dark">
+            <h1>Battle with us</h1>
+            <p>Learn more about battling with us.</p>
+            <p><a class="btn btn-lg btn-secondary js-scroll-trigger" href="#partners" role="button">Partner with us</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Battle your friends in any place. <span class="text-muted">At any time.</span></h2>
+          <p class="lead">All you need is your Digital Audio Workstation, and plug and play. We do the rest on the backend, you just provide the music and votes.</p>
+          <a><button type="button" class="btn btn-outline-info">Watch a Battle</button></a>
+          <a><button type="button" class="btn btn-outline-danger">Battle!</button></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="location" class="bg-light">
+    <div class="container">
+
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2>Battle any time. <span class="text-muted">Anywhere.</span></h2>
+          <p class="lead">Plug in Serrato or any compatible DAW and we do the rest on the backend.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <!--<div class="map-responsive">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.426138635959!2d-122.40954208484648!3d37.78005191962929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858083e3143673%3A0x3ccf551ad2674860!2sBindlestiff+Studio!5e0!3m2!1sen!2sus!4v1549744272604" width="500" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+        -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="production">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Meet some of our DJs. <span class="text-muted">It's lit.</span></h2>
+          <p class="lead">Learn more about our creative team in San Francisco and meet some of our battlers. </p>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-lg-4">
+
+          <svg src="\assets\dragon.svg" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+          <h2>Dominic A</h2>
+          <h3><span class="text-muted">Battle DJ</span></h3>
+          <p>Dominic has been battling off turntables since before he could breakdance. He rolls deep with his squad and it's fire.</p>
+          <p><a class="btn btn-outline-secondary js-scroll-trigger" href="#production" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+          <h2>Dominic A</h2>
+          <h3><span class="text-muted">Battle DJ</span></h3>
+          <p>Dominic has been battling off turntables since before he could breakdance. He rolls deep with his squad and it's fire.</p>
+          <p><a class="btn btn-outline-secondary js-scroll-trigger" href="#production" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+          <h2>Dominic A</h2>
+          <h3><span class="text-muted">Battle DJ</span></h3>
+          <p>Dominic has been battling off turntables since before he could breakdance. He rolls deep with his squad and it's fire.</p>
+          <p><a class="btn btn-outline-secondary js-scroll-trigger" href="#production" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+    </div>
+
+  </section>
+
+  <section id="partners" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Work with us. <span class="text-muted">We're growing.</span></h2>
+          <p class="lead">We're always looking for talented new battle DJs to join our crew and show their fire.</p>
+          <p><a class="btn btn-lg btn-outline-secondary js-scroll-trigger" href="#partners" role="button">Work with us</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Wanna talk? <span class="text-muted">Hit us up.</span></h2>
+          <p class="lead">Just one hashtag away #BATTLEDJ</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white"><ion-icon name="microphone"></ion-icon>JAM SESH DEV TEAM &copy; 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+  <!-- Add Ionicons custom -->
+  <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+  <!-- Facebook -->
+  <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5"
+    async></script>
+
+
+</body>
+</html>
